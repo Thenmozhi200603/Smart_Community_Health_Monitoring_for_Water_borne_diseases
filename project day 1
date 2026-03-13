@@ -1,0 +1,87 @@
+import java.util.Scanner;
+
+public class WaterBorneDiseaseMonitor {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("=====================================");
+        System.out.println(" SMART COMMUNITY HEALTH MONITORING ");
+        System.out.println(" Water-Borne Disease Detection System ");
+        System.out.println("=====================================");
+
+        // Input water quality parameters
+        System.out.print("Enter Water pH Level: ");
+        double ph = sc.nextDouble();
+
+        System.out.print("Enter Turbidity Level (NTU): ");
+        double turbidity = sc.nextDouble();
+
+        System.out.print("Enter Bacteria Level (CFU/ml): ");
+        int bacteria = sc.nextInt();
+
+        System.out.print("Enter Community Population: ");
+        int population = sc.nextInt();
+
+        System.out.println("\n----- WATER QUALITY ANALYSIS -----");
+
+        boolean unsafeWater = false;
+
+        if (ph < 6.5 || ph > 8.5) {
+            unsafeWater = true;
+            System.out.println("Abnormal pH Level Detected");
+        }
+
+        if (turbidity > 5) {
+            unsafeWater = true;
+            System.out.println("High Turbidity Detected");
+        }
+
+        if (bacteria > 100) {
+            unsafeWater = true;
+            System.out.println("High Bacterial Contamination");
+        }
+
+        System.out.println("\n----- DISEASE RISK PREDICTION -----");
+
+        if (unsafeWater) {
+            System.out.println("⚠ HIGH RISK OF WATER-BORNE DISEASES");
+            System.out.println("Possible Diseases:");
+            System.out.println("- Cholera");
+            System.out.println("- Typhoid");
+            System.out.println("- Dysentery");
+            System.out.println("- Diarrhea");
+        } else {
+            System.out.println("Water Quality Safe");
+        }
+
+        System.out.println("\n----- COMMUNITY HEALTH REPORT -----");
+
+        int estimatedCases;
+
+        if (unsafeWater) {
+            estimatedCases = (int)(population * 0.08);
+        } else {
+            estimatedCases = (int)(population * 0.01);
+        }
+
+        System.out.println("Estimated Risk Population: " + estimatedCases);
+
+        System.out.println("\n----- ALERT SYSTEM -----");
+
+        if (unsafeWater) {
+            System.out.println("ALERT: Send Warning to Community");
+            System.out.println("Action Required:");
+            System.out.println("1. Boil Drinking Water");
+            System.out.println("2. Chlorination Treatment");
+            System.out.println("3. Immediate Health Camp");
+        } else {
+            System.out.println("No Health Alert Needed");
+        }
+
+        System.out.println("\nSystem Monitoring Completed");
+
+        sc.close();
+    }
+}
